@@ -1,7 +1,7 @@
 {
   "name": "crumb-buster-bdteo",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "extension.js",
   "license": "MIT",
   "devDependencies": {
     "@girs/gjs": "^3.2.2",
