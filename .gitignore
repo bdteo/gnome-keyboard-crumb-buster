@@ -1,0 +1,13 @@
+# Yarn
+/yarn.lock
+/yarn-error.log
+/node_modules/
+
+# PhpStorm IDE files
+.idea/
+
+# Build artifacts and temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
