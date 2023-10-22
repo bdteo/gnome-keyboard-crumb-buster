@@ -14,15 +14,13 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 // SPDX-License-Identifier: GPL-2.0-or-later
-const GETTEXT_DOMAIN = 'crumb-buster';
-
 const {GObject, St, GLib} = imports.gi;
-
 const ExtensionUtils = imports.misc.extensionUtils;
 const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 
+const GETTEXT_DOMAIN = 'crumb-buster';
 const _ = ExtensionUtils.gettext;
 
 const Indicator = GObject.registerClass(

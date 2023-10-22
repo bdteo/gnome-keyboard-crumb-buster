@@ -2,7 +2,7 @@
 /yarn.lock
 /yarn-error.log
 /node_modules/
-
+/@types/
 # PhpStorm IDE files
 .idea/
 
