@@ -2,5 +2,5 @@
   "name": "CrumbBuster: Clean Your Keyboard",
   "description": "Unlock the power of a crumb-free keyboard! This GNOME extension lets you easily disable your keyboard with a simple mouse click, making it a breeze to clean those hard-to-reach spots. No more accidental key presses; just click to disable, clean away, and click to enable again. Perfect for those who love a clean workspace but hate the hassle.",
   "uuid": "crumb-buster@bdteo",
-  "shell-version": [ "3.38", "45" ]
+  "shell-version": [ "3.38", "41", "42", "43", "44", "45", "46"]
 }
