@@ -46,9 +46,10 @@ const KeyboardToggle = GObject.registerClass(
       const xinputCmd = `xinput ${action} $id`;
       const fullCmd = `for id in $(${baseCmd} | ${idCmd}); do ${xinputCmd}; done`;
 
+      log(111);
       log(`Executing command: ${fullCmd}`);
 
-      let [success, , stderr] = GLib.spawn_command_line_sync(fullCmd);
+      let [success, , stderr] = GLib.spawn_command_line_sync(`bash -c "${fullCmd}"`);
 
       if (!success)
         logError(new Error(`Failed to ${action} keyboards: ${stderr}`));
