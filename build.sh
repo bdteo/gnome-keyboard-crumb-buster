@@ -13,6 +13,6 @@ git_files=$(git ls-files)
 if [ -z "$git_files" ]; then
   echo "No files tracked by git. Nothing to do."
 else
-  zip -r my-extension.zip $git_files
-  echo "ZIP file created: my-extension.zip"
+  zip -r bdteo-crumb-buster.zip "$git_files"
+  echo "ZIP file created: bdteo-crumb-buster.zip"
 fi
