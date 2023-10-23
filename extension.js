@@ -19,8 +19,14 @@ import GLib from 'gi://GLib?version=2.0';
 import GObject from 'gi://GObject';
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
-import { QuickToggle, SystemIndicator } from 'resource:///org/gnome/shell/ui/quickSettings.js';
+import {
+  Extension,
+  gettext as _,
+} from 'resource:///org/gnome/shell/extensions/extension.js';
+import {
+  QuickToggle,
+  SystemIndicator,
+} from 'resource:///org/gnome/shell/ui/quickSettings.js';
 
 const KeyboardToggle = GObject.registerClass(
   class KeyboardToggle extends QuickToggle {
@@ -34,11 +40,26 @@ const KeyboardToggle = GObject.registerClass(
       this.connect('clicked', this._onClick.bind(this));
     }
 
+    _toggleKeyboards(action) {
+      const baseCmd = 'xinput list | grep -i "keyboard"';
+      const idCmd = 'grep -o "id=[0-9]*" | cut -d "=" -f 2';
+      const xinputCmd = `xinput ${action} $id`;
+      const fullCmd = `for id in $(${baseCmd} | ${idCmd}); do ${xinputCmd}; done`;
+
+      log(`Executing command: ${fullCmd}`);
+
+      let [success, , stderr] = GLib.spawn_command_line_sync(fullCmd);
+
+      if (!success)
+        logError(new Error(`Failed to ${action} keyboards: ${stderr}`));
+    }
+
     _onClick() {
       if (this.checked)
-        GLib.spawn_command_line_sync('setxkbmap -layout us');
+        this._toggleKeyboards('enable');
       else
-        GLib.spawn_command_line_sync('setxkbmap -layout null');
+        this._toggleKeyboards('disable');
+
     }
   }
 );
