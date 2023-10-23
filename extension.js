@@ -32,8 +32,8 @@ const KeyboardToggle = GObject.registerClass(
   class KeyboardToggle extends QuickToggle {
     constructor() {
       super({
-        title: _('Toggle Keyboard'),
-        iconName: 'input-keyboard-symbolic',
+        title: _('CrumbBuster'),
+        iconName: 'edit-clear-symbolic',
         toggleMode: true,
       });
 
@@ -46,7 +46,6 @@ const KeyboardToggle = GObject.registerClass(
       const xinputCmd = `xinput ${action} $id`;
       const fullCmd = `for id in $(${baseCmd} | ${idCmd}); do ${xinputCmd}; done`;
 
-      log(111);
       log(`Executing command: ${fullCmd}`);
 
       let [success, , stderr] = GLib.spawn_command_line_sync(`bash -c "${fullCmd}"`);
@@ -57,9 +56,9 @@ const KeyboardToggle = GObject.registerClass(
 
     _onClick() {
       if (this.checked)
-        this._toggleKeyboards('enable');
-      else
         this._toggleKeyboards('disable');
+      else
+        this._toggleKeyboards('enable');
 
     }
   }
@@ -71,12 +70,15 @@ const KeyboardIndicator = GObject.registerClass(
       super();
 
       this._indicator = this._addIndicator();
-      this._indicator.iconName = 'input-keyboard-symbolic';
+      this._indicator.iconName = 'edit-clear-symbolic';
 
       const toggle = new KeyboardToggle();
-      toggle.bind_property('checked',
-        this._indicator, 'visible',
-        GObject.BindingFlags.SYNC_CREATE);
+      toggle.bind_property(
+        'checked',
+        this._indicator,
+        'visible',
+        GObject.BindingFlags.SYNC_CREATE
+      );
       this.quickSettingsItems.push(toggle);
     }
   }
